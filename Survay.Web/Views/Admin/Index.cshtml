@@ -1,0 +1,38 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html data-ng-app="admin" class="uk-height-1-1">
+<head>
+    <title>Survey Admin</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @Styles.Render("~/bundles/bootstrap")
+
+  
+    <link href="~/Content/blocks.css" rel="stylesheet" />
+  
+</head>
+<body   class="uk-height-1-1">
+  
+
+    <div class="uk-height-1-1" style="background-color: yellow" data-ui-view></div>
+
+
+
+    @Scripts.Render("~/bundles/vendor")
+
+    @Scripts.Render("~/bundles/angular")
+
+    @Scripts.Render("~/bundles/Services")
+
+
+    @Scripts.Render("~/bundles/Admin")
+
+
+</body>
+</html>

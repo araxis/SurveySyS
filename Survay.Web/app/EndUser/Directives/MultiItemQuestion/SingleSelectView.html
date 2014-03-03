@@ -1,0 +1,18 @@
+﻿<div class="well well-sm">
+
+    <label data-ng-attr-for="{{question.Id}}">{{question.Title}}</label>
+    <p><h5>{{question.Description}}</h5></p>
+
+    <label id="{{question.Id}}" ng-repeat="choice in question.Choices" class="radio-inline ">    
+        <input type="radio"
+               name="{{question.Id}}"
+               id="{{choice.Id}}"
+               ng-checked="Value.indexOf(choice) > -1"
+               ng-click="toggleSelection(choice)"
+               value="anChoice" />{{choice.Title}}
+
+
+    </label>
+
+</div>
+

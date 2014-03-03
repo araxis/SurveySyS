@@ -1,0 +1,22 @@
+﻿<div>
+  
+    <ul class="nav nav-pills">
+        <li data-ng-repeat="p in pages" data-ng-class="{active:index==$index+1}" data-ng-click="setIndex($index+1)">
+            <a href="#">{{p.HeaderTitle}}</a>
+
+        </li>
+
+    </ul>
+
+
+    <div>
+
+        <div data-ng-repeat="p in pages" data-ng-show="index==$index+1">
+            <div data-app-page data-page="p"></div>
+        </div>
+
+         
+    </div>
+    
+  
+</div>
