@@ -14,7 +14,7 @@ namespace Survey.Web
 
             bundles.Add(new ScriptBundle("~/bundles/vendor")
          .Include("~/Scripts/vendor/jquery-2.1.0.min.js",
-         "~/Scripts/vendor/holder.min.js",
+         //"~/Scripts/vendor/holder.min.js",
           //"~/Scripts/vendor/respond.min.js",
           // "~/Scripts/vendor/q.min.js",
            "~/Scripts/vendor/breeze.min.js"
@@ -41,8 +41,6 @@ namespace Survey.Web
 
 
 
-            bundles.Add(new StyleBundle("~/bundles/kube").Include(
-                "~/Content/kube.min.css", new CssRewriteUrlTransform()));
 
 
             bundles.Add(new StyleBundle("~/bundles/bootstrap").Include(
@@ -53,6 +51,7 @@ namespace Survey.Web
                    //.Include("~/Content/bootstrap-additions.css", new CssRewriteUrlTransform())
                    .Include("~/Content/site.css", new CssRewriteUrlTransform())
                   .Include("~/Content/loading-bar.css", new CssRewriteUrlTransform())
+                  .Include("~/Content/animations.css", new CssRewriteUrlTransform())
                    );
 
         }
@@ -83,6 +82,7 @@ namespace Survey.Web
             ////how to read file pth line by line          
             //var ret = new ScriptBundle("~/bundles/" + module);
             var modulepathstring = "~/app/" + module;
+            var commonPathstring = modulepathstring + "/Common";
             var controllersPathstring = modulepathstring + "/Controllers";
             var directivesPathstring = modulepathstring + "/Directives";
             var servicesPathstring = modulepathstring + "/Services";
@@ -90,7 +90,7 @@ namespace Survey.Web
 
 
 
-
+            ret.IncludeDirectory(commonPathstring, "*.js", true);
             ret.IncludeDirectory(controllersPathstring, "*.js", true);
             ret.IncludeDirectory(directivesPathstring, "*.js", true);
             ret.IncludeDirectory(servicesPathstring, "*.js", true);

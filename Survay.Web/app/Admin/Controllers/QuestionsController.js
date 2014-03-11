@@ -10,6 +10,11 @@ var Admin;
                 this.TotalItems = 0;
                 this.CurrentPage = 1;
                 this.Questions = [];
+
+                $scope.$on(QuestionEvents.QuestionCreated, function (event, message) {
+                    var x = $scope.viewModel.DataService.CreateQuestion(message);
+                    $scope.viewModel.Questions.push(x);
+                });
                 $scope.viewModel = this;
 
                 this.load(1);
@@ -38,6 +43,10 @@ var Admin;
                     self.Questions = data.Results;
                     self.TotalItems = data.inlineCount;
                 });
+            };
+
+            QuestionsController.prototype.test = function (id) {
+                alert(id);
             };
             QuestionsController.$inject = ['$scope', 'DataService'];
             return QuestionsController;

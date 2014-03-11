@@ -1,6 +1,5 @@
 
-
-         interface IQuestion extends breeze.Entity{
+     interface IQuestion extends breeze.Entity{
              Id: number;
              Title: string;
              Description: string;
@@ -20,9 +19,12 @@
          IsMultiSelect: boolean;
     }
 
-    // interface IDescriptiveQuestion extends IQuestion {
+     interface IDescriptiveQuestion extends IQuestion {
 
         
 
-    //}
+    }
 
+    // enum TypeName { MultiChoiceQuestion, DescriptiveQuestion, NumericQuestion, RangeQuestion }
+
+    

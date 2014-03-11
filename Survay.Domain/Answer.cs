@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.AccessControl;
-
-namespace Survey.Domain
+﻿namespace Survey.Domain
 {
     public  class Answer
     {
@@ -9,20 +6,6 @@ namespace Survey.Domain
         public PageQuestion PageQuestion { get; set; }
  
 
-    }
-
-    public class DescriptiveAnswer : Answer
-    {
-
-        public string Value { get; set; }
-       
-    }
-
-    public class NumericAnswer : Answer
-    {
-
-        public double Value { get; set; }
-       
     }
 
     //public class MultiChoiceAnswer : Answer

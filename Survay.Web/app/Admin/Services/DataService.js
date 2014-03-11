@@ -58,6 +58,10 @@ var Admin;
             DataService.prototype.SaveChanges = function () {
                 return this.datacontext.Save();
             };
+
+            DataService.prototype.CreateQuestion = function (question) {
+                return this.datacontext.Manager.createEntity(question.TypeName, question);
+            };
             DataService.$inject = ['DbContext', '$q'];
             return DataService;
         })();

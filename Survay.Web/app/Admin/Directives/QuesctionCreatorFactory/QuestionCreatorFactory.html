@@ -1,0 +1,34 @@
+﻿<div data-collapse="Collapced">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <!-- <a href="" class="pull-right">X</a>-->
+            <button type="button" data-ng-click="Collapse()" class="close" aria-hidden="true">&times;</button>
+            <div>
+
+                {{Title}}
+                <label>Add Question  {{questionType}}</label>
+            </div>
+        </div>
+        <div id="pb" class="panel-body">
+            <div data-ng-switch data-on="questionType">
+
+                <div data-ng-switch-when="Descriptive">
+                    <div data-descriptive-questioncreator></div>
+                </div>
+
+                <div data-ng-switch-when="Numeric">
+                    <div data-numeric-question-creator></div>
+                </div>
+
+                <div data-ng-switch-when="MultiChoice">
+                    <div data-multi-choice-question-creator></div>
+                </div>
+
+                <div ng-switch-default>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

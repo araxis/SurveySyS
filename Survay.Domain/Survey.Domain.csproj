@@ -40,11 +40,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs" />
+    <Compile Include="DescriptiveAnswer.cs" />
+    <Compile Include="NumericAnswer.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="PageQuestion.cs" />
     <Compile Include="SurveyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Question.cs.d.ts">
+      <DependentUpon>Question.cs</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

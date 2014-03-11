@@ -1,3 +1,5 @@
+
+
 module Admin.Controllers {
     export interface IQuestionsScope extends ng.IScope {
         viewModel: QuestionsController;
@@ -18,6 +20,12 @@ module Admin.Controllers {
             this.TotalItems = 0;
             this.CurrentPage = 1;
             this.Questions = [];
+            
+            $scope.$on(QuestionEvents.QuestionCreated, function (event, message) {
+               
+                var x = $scope.viewModel.DataService.CreateQuestion(message);
+                $scope.viewModel.Questions.push(x);
+            });
             $scope.viewModel = this;
 
             this.load(1);
@@ -30,9 +38,6 @@ module Admin.Controllers {
                 alert("Everythings Done");
             })
           
-
-       
-
         }
 
         Search(str: string): void{
@@ -65,7 +70,11 @@ module Admin.Controllers {
             })
         }
 
+        test(id: number): void {
+            alert(id);
+        }
+
     }
 
-
+  
 } 

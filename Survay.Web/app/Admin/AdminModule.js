@@ -1,3 +1,9 @@
+window.onbeforeunload = check;
+function check() {
+    return "alooooooooooooooo?";
+    //or put whatever function you need to call when a user closes the web //browser.
+}
+
 var adminModule = angular.module('admin', ['ui.router', 'ui.bootstrap', 'breeze.angular', 'chieffancypants.loadingBar', 'ngAnimate']);
 
 adminModule.config([
@@ -10,7 +16,7 @@ adminModule.config([
             url: '/survey',
             templateUrl: '../app/Admin/Views/Survey.html'
         }).state('Questions', {
-            url: '/questions',
+            url: '/question/all',
             templateUrl: '../app/Admin/Views/Questions.html'
         }).state('AddQuestions', {
             url: '/question/add',
@@ -26,7 +32,11 @@ adminModule.service('DataService', Admin.Services.DataService);
 
 adminModule.controller('ShellController', Admin.Controllers.ShellController);
 adminModule.controller('QuestionsController', Admin.Controllers.QuestionsController);
+adminModule.directive('descriptiveQuestioncreator', Admin.directives.DescriptiveQuestionCreator);
+adminModule.directive('numericQuestionCreator', Admin.directives.NumericQuestionCreator);
 
+adminModule.directive('multiChoiceQuestionCreator', Admin.directives.MultiChoiceQuestionCreator);
+adminModule.directive('questionCreatorFactory', Admin.directives.QuestionCreatorFactory);
 adminModule.run([
     '$state', 'breeze', function ($state, breeze) {
         $state.go("Admin");

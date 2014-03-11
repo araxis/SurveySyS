@@ -1,4 +1,4 @@
-/* =Blocks
+﻿/* =Blocks
 -----------------------------------------------------------------------------*/
 .blocks-2,
 .blocks-3,
@@ -32,7 +32,7 @@
   width: 47%;
 }
 .blocks-3 > li {
-  width: 30.333333333333332%;
+  width: 30.33333333%;
 }
 .blocks-4 > li {
   width: 22%;
@@ -41,7 +41,7 @@
   width: 17%;
 }
 .blocks-6 > li {
-  width: 13.666666666666666%;
+  width: 13.66666667%;
 }
 .block-first {
   clear: both;
@@ -79,6 +79,7 @@
     width: 47%;
   }
   .blocks-mobile-33 > li {
-    width: 30.333333333333332%;
+    width: 30.33333333%;
   }
 }
+/*# sourceMappingURL=blocks.css.map */

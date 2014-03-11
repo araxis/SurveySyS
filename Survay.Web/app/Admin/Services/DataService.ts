@@ -75,6 +75,13 @@ module Admin.Services {
         public SaveChanges(): ng.IPromise<breeze.SaveResult>{
             return this.datacontext.Save();
         }
+
+        public CreateQuestion(question:IQuestion): breeze.Entity {
+
+         return   this.datacontext.Manager.createEntity(question.TypeName,question);
+
+
+        }
     }
 
  
