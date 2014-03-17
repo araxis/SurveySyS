@@ -23,7 +23,13 @@
 
         
 
-    }
+     }
+
+     interface INumericQuestion extends IQuestion {
+
+
+
+     }
 
     // enum TypeName { MultiChoiceQuestion, DescriptiveQuestion, NumericQuestion, RangeQuestion }
 

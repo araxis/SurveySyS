@@ -82,6 +82,13 @@ module Admin.Services {
 
 
         }
+
+        public CreateQuestion2(type: string, data: any): breeze.Entity {
+
+            return this.datacontext.Manager.createEntity(type, data);
+
+
+        }
     }
 
  

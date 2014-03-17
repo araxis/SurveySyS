@@ -28,36 +28,37 @@
 
 
 
-    interface IQuestionCreatorFactory extends ng.IScope {
+    interface IQuestionCreatorFactoryScope extends ng.IScope {
         questionType: any;
         Collapced: boolean;
         Collapse(): void;
+        state: string;
 
     }
-
+    import Constants = Admin.Constants;
     export function QuestionCreatorFactory() {
         var ret: ng.IDirective = {};
 
         ret.priority = 0;
         ret.restrict = "AE";
-        ret.scope = { questionType: '='};
+        ret.scope = { questionType: '=',state:'=',question:'='};
         //ret.scope = { questionType: '=', onCreated: '&' };
         ret.transclude = true;
         ret.templateUrl = '../app/Admin/Directives/QuesctionCreatorFactory/QuestionCreatorFactory.html';
         ret.replace = true;
-        ret.link = (scope: IQuestionCreatorFactory, element: ng.IAugmentedJQuery, attrs) => {
+        ret.link = (scope: IQuestionCreatorFactoryScope, element: ng.IAugmentedJQuery, attrs) => {
            
             
             scope.Collapced = true;
 
-            scope.Collapse = () => {
+            scope.Collapse = ()=> {
                 scope.Collapced = true;
                 scope.questionType = undefined;
-                scope.$broadcast(QuestionDirectiveEvents.ParentClosed);
+                scope.$broadcast(Constants.QuestionDirectiveEvents.ParentClosed);
 
-            }
+            };
 
-            scope.$on(QuestionDirectiveEvents.ChildClosed, function (event, message) {
+            scope.$on(Constants.QuestionDirectiveEvents.ChildClosed, (event, message)=> {
                 scope.Collapced = true;
                 scope.questionType = undefined;
             });
@@ -67,7 +68,7 @@
 
             scope.$watch(
                 "questionType",
-                function (newValue, oldValue) {
+                (newValue, oldValue)=> {
                     if (newValue == undefined) {
                         scope.Collapced = true;
                     }
@@ -81,6 +82,14 @@
                     //yy.empty();
                     //yy.append(newElement);
               
+
+                });
+            scope.$watch(
+                "state",
+                (newValue, oldValue) => {
+
+                    var xx = newValue;
+
 
                 });
 

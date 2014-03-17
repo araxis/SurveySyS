@@ -13,6 +13,8 @@ module Admin.directives {
         Cancel(): void;
     }
 
+    import Constants = Admin.Constants;
+
     export function DescriptiveQuestionCreator() {
 
 
@@ -28,34 +30,33 @@ module Admin.directives {
         ret.link = function (scope: IDescriptiveCreatorScope, element, attrs) {
 
 
-
-            var initialize = () => {
+            var initialize = ()=> {
                 scope.Title = '';
                 scope.Description = '';
                 scope.ImagePath = '';
-            }
+            };
 
             initialize();
 
             scope.CreateQuestion = () => {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: TypeName.DescriptiveQuestion}
+                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptiveQuestion };
 
 
-                scope.$emit(QuestionEvents.QuestionCreated, ret);
+                scope.$emit(Admin.Constants.QuestionEvents.QuestionCreated, ret);
               initialize();
 
             };
 
-            scope.$on(QuestionDirectiveEvents.ParentClosed, (event, message) => {
+            scope.$on(Admin.Constants.QuestionDirectiveEvents.ParentClosed, (event, message)=> {
                 initialize();
 
-            })
+            });
 
             scope.Cancel = () => {
 
 
                 initialize();
-                scope.$emit(QuestionDirectiveEvents.ChildClosed);
+                scope.$emit(Admin.Constants.QuestionDirectiveEvents.ChildClosed);
                
 
             };

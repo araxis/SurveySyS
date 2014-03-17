@@ -12,7 +12,7 @@
         RemoveChoice(choice);
         Cancel(): void;
     }
-
+    import Constants = Admin.Constants;
     export function MultiChoiceQuestionCreator() {
 
 
@@ -40,15 +40,15 @@
             initialize();
 
             scope.CreateQuestion = () => {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: TypeName.DescriptiveQuestion,Choices:scope.Choices }
+                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName:Constants.TypeName.DescriptiveQuestion,Choices:scope.Choices }
 
 
-                scope.$emit(QuestionEvents.QuestionCreated, ret);
+                scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
                 initialize();
 
             };
 
-            scope.$on(QuestionDirectiveEvents.ParentClosed, (event, message) => {
+            scope.$on(Constants.QuestionDirectiveEvents.ParentClosed, (event, message) => {
                 initialize();
 
             })
@@ -57,7 +57,7 @@
 
 
                 initialize();
-                scope.$emit(QuestionDirectiveEvents.ChildClosed);
+                scope.$emit(Constants.QuestionDirectiveEvents.ChildClosed);
 
 
             };

@@ -10,25 +10,54 @@
             </div>
         </div>
         <div id="pb" class="panel-body">
-            <div data-ng-switch data-on="questionType">
+            {{state}}
+            <div data-ng-switch data-on="state">
+                
+                <div data-ng-switch-when="Add">
+                    <div data-ng-switch data-on="questionType">
 
-                <div data-ng-switch-when="Descriptive">
-                    <div data-descriptive-questioncreator></div>
+                        <div data-ng-switch-when="Descriptive">
+                            <div data-descriptive-questioncreator></div>
+                        </div>
+
+                        <div data-ng-switch-when="Numeric">
+                            <div data-numeric-question-creator></div>
+                        </div>
+
+                        <div data-ng-switch-when="MultiChoice">
+                            <div data-multi-choice-question-creator></div>
+                        </div>
+
+                        <div ng-switch-default>
+
+                        </div>
+
+                    </div>
                 </div>
+                <div data-ng-switch-when="Edit">
+                
+                    <div data-ng-switch data-on="questionType">
 
-                <div data-ng-switch-when="Numeric">
-                    <div data-numeric-question-creator></div>
+                        <div data-ng-switch-when="Descriptive">
+                            <div data-descriptive-question-editor data-question="question"></div>
+                        </div>
+
+                        <div data-ng-switch-when="Numeric">
+                            <div data-numeric-question-editor data-question="question"></div>
+                        </div>
+
+                        <div data-ng-switch-when="MultiChoice">
+                            <div data-multi-choice-question-editor data-question="question"></div>
+                        </div>
+
+                        <div ng-switch-default>
+
+                        </div>
+
+                    </div>
                 </div>
-
-                <div data-ng-switch-when="MultiChoice">
-                    <div data-multi-choice-question-creator></div>
-                </div>
-
-                <div ng-switch-default>
-
-                </div>
-
             </div>
+         
         </div>
     </div>
 </div>

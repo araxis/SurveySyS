@@ -2,17 +2,19 @@ var Admin;
 (function (Admin) {
     (function (Controllers) {
         var QuestionsController = (function () {
-            function QuestionsController($scope, DataService) {
+            function QuestionsController($scope, dataService) {
                 this.$scope = $scope;
-                this.DataService = DataService;
+                this.dataService = dataService;
                 this.isCollapsed = true;
                 this.Pagesize = 10;
                 this.TotalItems = 0;
                 this.CurrentPage = 1;
+                this.selectedQ = undefined;
                 this.Questions = [];
+                this.mode = '';
 
                 $scope.$on(QuestionEvents.QuestionCreated, function (event, message) {
-                    var x = $scope.viewModel.DataService.CreateQuestion(message);
+                    var x = $scope.viewModel.dataService.CreateQuestion(message);
                     $scope.viewModel.Questions.push(x);
                 });
                 $scope.viewModel = this;
@@ -20,7 +22,7 @@ var Admin;
                 this.load(1);
             }
             QuestionsController.prototype.Save = function () {
-                this.DataService.SaveChanges().then(function () {
+                this.dataService.SaveChanges().then(function () {
                     alert("Everythings Done");
                 });
             };
@@ -39,7 +41,7 @@ var Admin;
             QuestionsController.prototype.load = function (page) {
                 var self = this;
 
-                this.DataService.GetPagedQuestions(this.Pagesize, page).then(function (data) {
+                this.dataService.GetPagedQuestions(this.Pagesize, page).then(function (data) {
                     self.Questions = data.Results;
                     self.TotalItems = data.inlineCount;
                 });

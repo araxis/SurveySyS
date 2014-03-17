@@ -62,6 +62,10 @@ var Admin;
             DataService.prototype.CreateQuestion = function (question) {
                 return this.datacontext.Manager.createEntity(question.TypeName, question);
             };
+
+            DataService.prototype.CreateQuestion2 = function (type, data) {
+                return this.datacontext.Manager.createEntity(type, data);
+            };
             DataService.$inject = ['DbContext', '$q'];
             return DataService;
         })();

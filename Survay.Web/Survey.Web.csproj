@@ -158,11 +158,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\Admin\Directives\DescriptiveQuestionCreator\DescriptiveQuestionCreator.html" />
+    <Content Include="app\Admin\Directives\Editor\DescriptiveQuestionEditor\DescriptiveQuestionEditor.html" />
+    <Content Include="app\Admin\Directives\Editor\MultiChoiceQuestionEditor\MultiChoiceQuestionEditor.html" />
+    <Content Include="app\Admin\Directives\Editor\NumericQuestionEditor\NumericQuestionEditor.html" />
     <Content Include="app\Admin\Directives\MultiChoiceQuestionCreator\MultiChoiceQuestionCreator.html" />
     <Content Include="app\Admin\Directives\NumericQuestionCreator\NumericQuestionCreator.html" />
     <Content Include="app\Admin\Directives\QuesctionCreatorFactory\QuestionCreatorFactory.html" />
     <Content Include="app\Admin\Views\Dashboard.html" />
-    <Content Include="app\Admin\Views\Questions.html" />
+    <Content Include="app\Admin\Views\Question\Create\CreateDescriptive.html" />
+    <Content Include="app\Admin\Views\Question\All.html" />
+    <Content Include="app\Admin\Views\Question\Create\CreateMultiChoice.html" />
+    <Content Include="app\Admin\Views\Question\Create\CreateNumeric.html" />
     <Content Include="app\Admin\Views\Shell.html" />
     <Content Include="app\Admin\Views\Survey.html" />
     <Content Include="app\EndUser\Directives\MultiItemQuestion\MultiSelectView.html" />
@@ -231,13 +237,13 @@
     <Content Include="Content\blocks.css.map">
       <DependentUpon>blocks.css</DependentUpon>
     </Content>
+    <Content Include="Scripts\breeze.angular.js" />
+    <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
-    <Content Include="Scripts\breeze.angular.js" />
-    <Content Include="Scripts\breeze.debug.js" />
-    <Content Include="Scripts\breeze.directives.validation.js" />
     <None Include="Scripts\breeze.intellisense.js" />
+    <Content Include="Scripts\breeze.directives.js" />
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\loading-bar.js" />
     <Content Include="Scripts\vendor\breeze.angular.js" />
@@ -289,6 +295,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\Admin\Views\Question\Edit\" />
     <Folder Include="app\EndUser\Common\" />
     <Folder Include="app\EndUser\Services\" />
     <Folder Include="App_Data\" />
@@ -308,10 +315,17 @@
     <TypeScriptCompile Include="app\Admin\AdminModule.ts" />
     <TypeScriptCompile Include="app\Admin\Common\EventsAlliseNames.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\DashboardController.ts" />
-    <TypeScriptCompile Include="app\Admin\Controllers\QuestionsController.ts" />
+    <TypeScriptCompile Include="app\Admin\Controllers\Question\Create\CreateDescriptiveController.ts" />
+    <TypeScriptCompile Include="app\Admin\Controllers\Question\Create\CreateMultiChoiceController.ts" />
+    <TypeScriptCompile Include="app\Admin\Controllers\Question\Create\CreateNumericController.ts" />
+    <TypeScriptCompile Include="app\Admin\Controllers\Question\Edit\EditDescriptiveController.ts" />
+    <TypeScriptCompile Include="app\Admin\Controllers\Question\QuestionsController.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\ShellController.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\SurveyController.ts" />
     <TypeScriptCompile Include="app\Admin\Directives\DescriptiveQuestionCreator\DescriptiveQuestionCreator.ts" />
+    <TypeScriptCompile Include="app\Admin\Directives\Editor\DescriptiveQuestionEditor\DescriptiveQuestionEditor.ts" />
+    <TypeScriptCompile Include="app\Admin\Directives\Editor\MultiChoiceQuestionEditor\MultiChoiceQuestionEditor.ts" />
+    <TypeScriptCompile Include="app\Admin\Directives\Editor\NumericQuestionEditor\NumericQuestionEditor.ts" />
     <TypeScriptCompile Include="app\Admin\Directives\MultiChoiceQuestionCreator\MultiChoiceQuestionCreator.ts" />
     <TypeScriptCompile Include="app\Admin\Directives\NumericQuestionCreator\NumericQuestionCreator.ts" />
     <TypeScriptCompile Include="app\Admin\Directives\QuesctionCreatorFactory\QuestionCreatorFactory.ts" />

@@ -1,9 +1,8 @@
-window.onbeforeunload = check;
-function check() {
-    return "alooooooooooooooo?";
-    //or put whatever function you need to call when a user closes the web //browser.
-}
-
+//window.onbeforeunload  = check;
+//function check() {
+//    return "alooooooooooooooo?";
+//    //or put whatever function you need to call when a user closes the web //browser.
+//}
 var adminModule = angular.module('admin', ['ui.router', 'ui.bootstrap', 'breeze.angular', 'chieffancypants.loadingBar', 'ngAnimate']);
 
 adminModule.config([
@@ -17,7 +16,7 @@ adminModule.config([
             templateUrl: '../app/Admin/Views/Survey.html'
         }).state('Questions', {
             url: '/question/all',
-            templateUrl: '../app/Admin/Views/Questions.html'
+            templateUrl: '../app/Admin/Views/Question/All.html'
         }).state('AddQuestions', {
             url: '/question/add',
             templateUrl: '../app/Admin/Views/AddQuestion.html'
@@ -35,10 +34,22 @@ adminModule.controller('QuestionsController', Admin.Controllers.QuestionsControl
 adminModule.directive('descriptiveQuestioncreator', Admin.directives.DescriptiveQuestionCreator);
 adminModule.directive('numericQuestionCreator', Admin.directives.NumericQuestionCreator);
 
+adminModule.directive('numericQuestionEditor', Admin.directives.NumericQuestionEditor);
+adminModule.directive('descriptiveQuestionEditor', Admin.directives.DescriptiveQuestionEditor);
+adminModule.directive('multiChoiceQuestionEditor', Admin.directives.MultiChoiceQuestionEditor);
+
 adminModule.directive('multiChoiceQuestionCreator', Admin.directives.MultiChoiceQuestionCreator);
 adminModule.directive('questionCreatorFactory', Admin.directives.QuestionCreatorFactory);
 adminModule.run([
-    '$state', 'breeze', function ($state, breeze) {
+    '$state', 'breeze', '$window', 'DbContext', function ($state, breeze, $window, dbContext) {
+        $window.onbeforeunload = function (ev) {
+            var rr = dbContext.Manager.hasChanges();
+            if (rr) {
+                alert("UnSaved Data!!!!!");
+                return false;
+            }
+        };
+
         $state.go("Admin");
     }]);
 //# sourceMappingURL=AdminModule.js.map

@@ -1,9 +1,9 @@
-window.onbeforeunload  = check;
-function check() {
-    return "alooooooooooooooo?";
+//window.onbeforeunload  = check;
+//function check() {
+//    return "alooooooooooooooo?";
    
-    //or put whatever function you need to call when a user closes the web //browser.
-}
+//    //or put whatever function you need to call when a user closes the web //browser.
+//}
 
 
 
@@ -20,7 +20,7 @@ adminModule.config(['$stateProvider','cfpLoadingBarProvider', ($stateProvider: n
         
     }).state('Questions', {
             url: '/question/all',
-            templateUrl: '../app/Admin/Views/Questions.html'
+        templateUrl: '../app/Admin/Views/Question/All.html'
 
     }).state('AddQuestions', {
             url: '/question/add',
@@ -42,9 +42,22 @@ adminModule.controller('QuestionsController', Admin.Controllers.QuestionsControl
 adminModule.directive('descriptiveQuestioncreator', Admin.directives.DescriptiveQuestionCreator);
 adminModule.directive('numericQuestionCreator', Admin.directives.NumericQuestionCreator);
 
+adminModule.directive('numericQuestionEditor', Admin.directives.NumericQuestionEditor);
+adminModule.directive('descriptiveQuestionEditor', Admin.directives.DescriptiveQuestionEditor);
+adminModule.directive('multiChoiceQuestionEditor', Admin.directives.MultiChoiceQuestionEditor);
+
 adminModule.directive('multiChoiceQuestionCreator', Admin.directives.MultiChoiceQuestionCreator);
 adminModule.directive('questionCreatorFactory', Admin.directives.QuestionCreatorFactory);
-adminModule.run(['$state', 'breeze', ($state: ng.ui.IStateService, breeze) => {
+adminModule.run(['$state', 'breeze', '$window', 'DbContext', ($state: ng.ui.IStateService, breeze, $window: ng.IWindowService, dbContext:IUnitofWork) => {
+
+    $window.onbeforeunload = (ev) => {
+        var rr = dbContext.Manager.hasChanges();
+        if (rr) {
+            alert("UnSaved Data!!!!!");
+            return false;
+        }
+       
+    }
 
     $state.go("Admin");
 

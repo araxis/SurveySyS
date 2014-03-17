@@ -14,6 +14,7 @@ module Admin.directives {
 
     }
 
+    import Constants = Admin.Constants;
     export function NumericQuestionCreator() {
 
 
@@ -26,42 +27,41 @@ module Admin.directives {
         ret.transclude = true;
         ret.templateUrl = "../app/Admin/Directives/NumericQuestionCreator/NumericQuestionCreator.html";
         ret.replace = true;
-        ret.link = function (scope: INumericQuestionCreatorScope, element, attrs) {
+        ret.link = (scope: INumericQuestionCreatorScope, element, attrs)=> {
 
 
-
-            var initialize = () => {
+            var initialize = ()=> {
                 scope.Title = '';
                 scope.Description = '';
                 scope.ImagePath = '';
-            }
+            };
 
             initialize();
 
-            scope.CreateQuestion = () => {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath,TypeName:TypeName.NumericQuestion }
+            scope.CreateQuestion = ()=> {
+                var qu = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.NumericQuestion };
 
 
-                scope.$emit(QuestionEvents.QuestionCreated, ret);
+                scope.$emit(Constants.QuestionEvents.QuestionCreated, qu);
                 initialize();
 
             };
 
-            scope.$on(QuestionDirectiveEvents.ParentClosed, (event, message) => {
+            scope.$on(Constants.QuestionDirectiveEvents.ParentClosed, (event, message)=> {
                 initialize();
 
-            })
+            });
 
-            scope.Cancel = () => {
+            scope.Cancel = ()=> {
 
 
                 initialize();
-                scope.$emit(QuestionDirectiveEvents.ChildClosed);
+                scope.$emit(Constants.QuestionDirectiveEvents.ChildClosed);
 
 
             };
 
-        }
+        };
 
 
         return ret;
