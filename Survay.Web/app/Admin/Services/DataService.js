@@ -1,3 +1,5 @@
+/// <reference path="../adminmodule.ts" />
+
 var Admin;
 (function (Admin) {
     (function (Services) {
@@ -66,7 +68,7 @@ var Admin;
             DataService.prototype.CreateQuestion2 = function (type, data) {
                 return this.datacontext.Manager.createEntity(type, data);
             };
-            DataService.$inject = ['DbContext', '$q'];
+            DataService.serviceId = "DataService";
             return DataService;
         })();
         Services.DataService = DataService;
@@ -79,6 +81,8 @@ var Admin;
             return Result;
         })();
         Services.Result = Result;
+
+        adminModule.service(DataService.serviceId, ['DbContext', '$q', DataService]);
     })(Admin.Services || (Admin.Services = {}));
     var Services = Admin.Services;
 })(Admin || (Admin = {}));

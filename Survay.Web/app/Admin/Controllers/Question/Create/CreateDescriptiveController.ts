@@ -1,33 +1,38 @@
-﻿module Admin.Controllers.Question.Create {
+﻿/// <reference path="../../../adminmodule.ts" />
+module Admin.Controllers.Question.Create {
 
 
   
 
    export  interface ICreateDescriptiveController {
-        Title: string;
-        Description: string;
-        ImagePath: string;
-        CreateQuestion(): void;
+       Title: string;
+       Description: string;
+       ImagePath: string;
+       Create(): void;
+       CreateAndExit(): void;
        Cancel(): void;
+
+   
+
    }
 
     import Constants= Admin.Constants;
 
     export class CreateDescriptiveController implements   ICreateDescriptiveController {
 
-        static $inject = ['$scope', 'dataService'];
-
+        //static $inject = ['$scope', 'QuestionDataService'];
+        static controllerId: string = "CreateDescriptiveController";
         public Title: string = '';
         public Description: string = '';
         public ImagePath: string = '';
        
-        constructor(private $scope: ng.IScope, private dataService: IAdminDataService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService) {
             
         }
 
-        CreateQuestion(): void {
+        Create(): void {
             var ret = {Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath};
-            this.dataService.CreateQuestion2(Constants.TypeName.DescriptiveQuestion, ret);
+            this.questionDataService.CreateQuestion(Constants.TypeName.DescriptiveQuestion, ret);
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
         }
 
@@ -35,6 +40,13 @@
             this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
         }
 
-    }
+  
 
+        CreateAndExit():void {}
+
+    }
+    adminModule.controller(CreateDescriptiveController.controllerId, ['$scope', 'QuestionDataService',CreateDescriptiveController]);
 }
+
+
+

@@ -1,4 +1,5 @@
-﻿module Admin.Controllers.Question.Create {
+﻿/// <reference path="../../../adminmodule.ts" />
+module Admin.Controllers.Question.Create {
 
 
     export interface ICreateNumericScope extends ng.IScope {
@@ -9,7 +10,8 @@
         Title: string;
         Description: string;
         ImagePath: string;
-        CreateQuestion(): void;
+        Create(): void;
+        CreateAndExit():void;
         Cancel(): void;
     }
 
@@ -17,20 +19,24 @@
 
     export class CreateNumericController implements ICreateNumericController {
 
-        static $inject = ['$scope', 'dataService'];
-
+        //static $inject = ['$scope', 'QuestionDataService'];
+        static controllerId: string = "CreateNumericController";
         public Title: string = '';
         public Description: string = '';
         public ImagePath: string = '';
 
-        constructor(private $scope: ng.IScope, private dataService: IAdminDataService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService) {
 
         }
 
-        CreateQuestion(): void {
+        Create(): void {
             var ret = { Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath };
-            this.dataService.CreateQuestion2(Constants.TypeName.NumericQuestion, ret);
+            this.questionDataService.CreateQuestion(Constants.TypeName.NumericQuestion, ret);
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
+        }
+
+        CreateAndExit(): void {
+            
         }
 
         Cancel(): void {
@@ -39,4 +45,5 @@
 
     }
 
+    adminModule.controller(CreateNumericController.controllerId, ['$scope', 'QuestionDataService',CreateNumericController]);
 } 

@@ -1,21 +1,25 @@
-module App.Services {
+
+
+var breezeDbContextModule = angular.module('breezeDbContext', ['breeze.angular']);
+
+module App.Services{
 
     export class DbContext implements IUnitofWork {
-
+        static serviceId: string = "DbContext";
        public  Manager: breeze.EntityManager;
 
         constructor() {
-            breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
-        this.Manager = new breeze.EntityManager("/breeze/Data");
+            //breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
+            this.Manager = new breeze.EntityManager("/breeze/Data");
       
-        this.Initialize();
+            this.Initialize();
         
     }
 
 
     private Initialize(): void {
 
-        this.Manager.fetchMetadata().then(() => {
+            this.Manager.fetchMetadata().then(() => {
             this.Manager.metadataStore.setEntityTypeForResourceName('Surveys', 'SurveyModel');
             this.Manager.metadataStore.registerEntityTypeCtor('Question', questionCtor, questionInit);
             this.Manager.metadataStore.registerEntityTypeCtor('PageQuestion', PageQuestionCtor, PageQuestionInit);
@@ -44,8 +48,11 @@ module App.Services {
         return query;
     }
 
+
+
     }
-   
+    breezeDbContextModule.service(DbContext.serviceId, [DbContext]);
+}
       function questionCtor ():void {
         this.TypeName = "";
 
@@ -74,13 +81,14 @@ module App.Services {
                 entity.Answer = -1;
                 entity.TypeName = 'NumericQuestion';
             case 'MultiChoiceQuestion':
-                var q = <IMultiChoiceQuestion>(entity.Question);
+               // var q = <IMultiChoiceQuestion>(entity.Question);
                 entity.Answer = new Array<IChoice>();
-                if (q.IsMultiSelect) {
-                    entity.TypeName = 'MultiSelect';
-                } else {
-                    entity.TypeName = 'SingleSelect';
-                }
+                entity.TypeName = 'MultiChoiceQuestion';
+                //if (q.IsMultiSelect) {
+                //    entity.TypeName = 'MultiSelect';
+                //} else {
+                //    entity.TypeName = 'SingleSelect';
+                //}
                
             break;
             default:
@@ -92,4 +100,6 @@ module App.Services {
 
     }
 //export var instance = new DbContext();
-}
+
+
+

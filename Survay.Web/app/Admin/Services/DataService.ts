@@ -1,15 +1,33 @@
+/// <reference path="../adminmodule.ts" />
 
+interface IAdminDataService {
+
+
+
+    datacontext: IUnitofWork;
+    GetAllQuestions(): ng.IPromise<Array<IQuestion>>
+    CreateQuestion(question: IQuestion): breeze.Entity
+    CreateQuestion2(type: string, data: any): breeze.Entity
+
+    GetPagedQuestions(pagesize: number, page: number): ng.IPromise<IResult<IQuestion>>
+    SaveChanges(): ng.IPromise<breeze.SaveResult>
+}
+
+interface IResult<T> {
+
+    inlineCount: number;
+    Results: Array<T>;
+
+}
 
 module Admin.Services {
 
     export class DataService implements IAdminDataService {
-        static $inject = ['DbContext', '$q'];
+        //static $inject = ['DbContext', '$q'];
+        static serviceId: string = "DataService";
         constructor(public datacontext: IUnitofWork, private $q: ng.IQService) {
             var aa = '';
         }
-
-
-
 
         public GetAllQuestions(): ng.IPromise<Array<IQuestion>> {
             var query = this.datacontext.IQueryable("Questions").expand('Choices');
@@ -37,10 +55,10 @@ module Admin.Services {
             var query = this.datacontext.IQueryable("Questions").orderBy('Id').skip(skip).take(pagesize).expand('Choices').inlineCount();
             var deferred = this.$q.defer<IResult<IQuestion>>();
           var total=0
-          var promise = query.execute().then((data) => {
-              total = data.inlineCount;
-              return query.using(breeze.FetchStrategy.FromLocalCache).execute();
-            })
+            var promise = query.execute().then((data)=> {
+                total = data.inlineCount;
+                return query.using(breeze.FetchStrategy.FromLocalCache).execute();
+            });
 
             promise.then((result) => {
                 var ret = new Result<IQuestion>();
@@ -98,5 +116,8 @@ module Admin.Services {
   public Results: Array<T> = []
        
     }
+
+
+    adminModule.service(DataService.serviceId, ['DbContext', '$q', DataService]);
 
 }

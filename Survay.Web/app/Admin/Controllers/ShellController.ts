@@ -1,11 +1,12 @@
+/// <reference path="../adminmodule.ts" />
 module Admin.Controllers {
     export interface IMuduleScope extends ng.IScope {
         viewModel: ShellController;
     }
 
     export class ShellController {
-        static $inject = ['$scope'];
-
+ 
+        static controllerId: string = "ShellController";
         public isCollapsed: boolean;
         public aside: any;
         constructor(private $scope: IMuduleScope) {
@@ -20,5 +21,5 @@ module Admin.Controllers {
 
     }
 
-
+    adminModule.controller(ShellController.controllerId, ['$scope', ShellController]);
 } 

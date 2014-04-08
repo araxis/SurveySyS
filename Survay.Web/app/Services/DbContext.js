@@ -1,9 +1,11 @@
+var breezeDbContextModule = angular.module('breezeDbContext', ['breeze.angular']);
+
 var App;
 (function (App) {
     (function (Services) {
         var DbContext = (function () {
             function DbContext() {
-                breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
+                //breeze.config.initializeAdapterInstance("modelLibrary", "backingStore", true);
                 this.Manager = new breeze.EntityManager("/breeze/Data");
 
                 this.Initialize();
@@ -28,46 +30,44 @@ var App;
                 var query = breeze.EntityQuery.from(entitytype).using(this.Manager);
                 return query;
             };
+            DbContext.serviceId = "DbContext";
             return DbContext;
         })();
         Services.DbContext = DbContext;
-
-        function questionCtor() {
-            this.TypeName = "";
-        }
-
-        function questionInit(entity) {
-            entity.TypeName = entity.entityType.shortName;
-        }
-
-        function PageQuestionCtor() {
-            this.Answer = undefined;
-            this.TypeName = '';
-        }
-
-        function PageQuestionInit(entity) {
-            switch (entity.Question.TypeName) {
-                case 'DescriptiveQuestion':
-                    entity.Answer = "";
-                    entity.TypeName = 'DescriptiveQuestion';
-                    break;
-                case 'NumericQuestion':
-                    entity.Answer = -1;
-                    entity.TypeName = 'NumericQuestion';
-                case 'MultiChoiceQuestion':
-                    var q = (entity.Question);
-                    entity.Answer = new Array();
-                    if (q.IsMultiSelect) {
-                        entity.TypeName = 'MultiSelect';
-                    } else {
-                        entity.TypeName = 'SingleSelect';
-                    }
-
-                    break;
-                default:
-            }
-        }
+        breezeDbContextModule.service(DbContext.serviceId, [DbContext]);
     })(App.Services || (App.Services = {}));
     var Services = App.Services;
 })(App || (App = {}));
+function questionCtor() {
+    this.TypeName = "";
+}
+
+function questionInit(entity) {
+    entity.TypeName = entity.entityType.shortName;
+}
+
+function PageQuestionCtor() {
+    this.Answer = undefined;
+    this.TypeName = '';
+}
+
+function PageQuestionInit(entity) {
+    switch (entity.Question.TypeName) {
+        case 'DescriptiveQuestion':
+            entity.Answer = "";
+            entity.TypeName = 'DescriptiveQuestion';
+            break;
+        case 'NumericQuestion':
+            entity.Answer = -1;
+            entity.TypeName = 'NumericQuestion';
+        case 'MultiChoiceQuestion':
+            // var q = <IMultiChoiceQuestion>(entity.Question);
+            entity.Answer = new Array();
+            entity.TypeName = 'MultiChoiceQuestion';
+
+            break;
+        default:
+    }
+}
+//export var instance = new DbContext();
 //# sourceMappingURL=DbContext.js.map

@@ -13,11 +13,11 @@ namespace Survey.Web
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
             bundles.Add(new ScriptBundle("~/bundles/vendor")
-         .Include("~/Scripts/vendor/jquery-2.1.0.min.js",
+         .Include("~/Scripts/jquery-2.1.0.min.js",
          //"~/Scripts/vendor/holder.min.js",
           //"~/Scripts/vendor/respond.min.js",
           // "~/Scripts/vendor/q.min.js",
-           "~/Scripts/vendor/breeze.min.js"
+           "~/Scripts/breeze.min.js"
           
           ));
 
@@ -31,7 +31,8 @@ namespace Survey.Web
          "~/Scripts/ui-bootstrap-tpls-0.10.0.min.js",              
         "~/scripts/angular-sanitize.min.js",
         "~/scripts/AngularUI/ui-router.min.js",
-         "~/Scripts/vendor/breeze.angular.js",
+         "~/Scripts/breeze.angular.js",
+         "~/Scripts/breeze.directives.js",
           "~/Scripts/loading-bar.js"
        ));
 
@@ -86,15 +87,21 @@ namespace Survey.Web
             var controllersPathstring = modulepathstring + "/Controllers";
             var directivesPathstring = modulepathstring + "/Directives";
             var servicesPathstring = modulepathstring + "/Services";
+            var buRulesPathstring = modulepathstring + "/BuRules";
+            var filtersPathstring = modulepathstring + "/Filters";
             var modulePath = System.Web.HttpContext.Current.Server.MapPath(modulepathstring);
 
-
-
             ret.IncludeDirectory(commonPathstring, "*.js", true);
-            ret.IncludeDirectory(controllersPathstring, "*.js", true);
-            ret.IncludeDirectory(directivesPathstring, "*.js", true);
-            ret.IncludeDirectory(servicesPathstring, "*.js", true);
             ret.IncludeDirectory(modulepathstring, "*.js", false);
+            ret.IncludeDirectory(filtersPathstring, "*.js", false);
+            ret.IncludeDirectory(servicesPathstring, "*.js", true);
+            ret.IncludeDirectory(buRulesPathstring, "*.js", true);
+            ret.IncludeDirectory(directivesPathstring, "*.js", true);
+            ret.IncludeDirectory(controllersPathstring, "*.js", true);
+         
+            
+            
+           
 
             BundleTable.Bundles.Add(ret);
 

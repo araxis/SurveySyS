@@ -1,4 +1,5 @@
-﻿module Admin.Controllers.Question.Edit {
+﻿/// <reference path="../../../adminmodule.ts" />
+module Admin.Controllers.Question.Edit {
 
 
 
@@ -7,8 +8,11 @@
         Title: string;
         Description: string;
         ImagePath: string;
-        Question: IDescriptiveQuestion
-        Submit(): void;
+       
+
+        Edit(): void;
+        EditAndExit():void;
+
         Cancel(): void;
     }
 
@@ -16,21 +20,22 @@
 
     export class EditDescriptiveController implements IEditDescriptiveController {
 
-        static $inject = ['$scope', 'dataService'];
-
+        //static $inject = ['$scope', 'QuestionDataService', '$state'];
+        static controllerId: string = "EditDescriptiveController";
         public Title: string = '';
         public Description: string = '';
         public ImagePath: string = '';
-        public Question: IDescriptiveQuestion =undefined;
+        private  Question: IDescriptiveQuestion =undefined;
 
-        constructor(private $scope: ng.IScope, private dataService: IAdminDataService) {
-           
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService, $state: ng.ui.IStateService) {
+
+            var p = $state.params['id'];
 
             $scope.$on(Constants.QuestionEvents.EditQuestion, this.EditQuestion);
 
         }
 
-        Submit(): void {
+        Edit(): void {
             
             if (this.Question == undefined) {
                 return;
@@ -42,12 +47,16 @@
 
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
         }
-
+        EditAndExit(): void{}
         Cancel(): void {
             this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
         }
+  
+        private LoadQuestion(id: number) {
+            //var query = this.datacontext.IQueryable(Constants.BaseTypeName.Questions).where();
+            
 
-    
+        }
 
         private Initialize(question: IDescriptiveQuestion): void {
             if (this.Question == undefined) {
@@ -76,6 +85,8 @@
             this.Initialize(question);
         }
     
-}
+    }
+
+    adminModule.controller(EditDescriptiveController.controllerId, ['$scope', 'QuestionDataService', '$state',EditDescriptiveController]);
 
 } 

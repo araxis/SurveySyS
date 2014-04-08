@@ -1,7 +1,7 @@
 /// <reference path="../../scripts/typings/angularjs/angular.d.ts" />
 
 
-var enduserModule = angular.module("EndUser", ['ui.router','ui.bootstrap']);
+var enduserModule = angular.module("EndUser", ['ui.router', 'ui.bootstrap', 'breezeDbContext']);
 
 
  enduserModule.config(['$stateProvider', ($stateProvider: ng.ui.IStateProvider) => {
@@ -12,7 +12,7 @@ var enduserModule = angular.module("EndUser", ['ui.router','ui.bootstrap']);
      });
 
  }]);
- enduserModule.service('DbContext',  App.Services.DbContext);
+ //enduserModule.service('DbContext',  App.Services.DbContext);
  enduserModule.service('DataService', App.Services.DataService);
 enduserModule.controller('ShellController', EndUser.Controllers.ShellController);
 

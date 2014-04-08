@@ -25,22 +25,21 @@
         ret.transclude = true;
         ret.templateUrl = "../app/Admin/Directives/MultiChoiceQuestionCreator/MultiChoiceQuestionCreator.html";
         ret.replace = true;
-        ret.link = function (scope: IMultiChoiceQuestionCreatorScope, element, attrs) {
+        ret.link = function(scope: IMultiChoiceQuestionCreatorScope, element, attrs) {
 
 
-
-            var initialize = () => {
+            var initialize = ()=> {
                 scope.Title = '';
                 scope.Description = '';
                 scope.ImagePath = '';
                 scope.Choices = [];
-                scope.ChoiceTitle=''
+                scope.ChoiceTitle = ''
             }
 
             initialize();
 
-            scope.CreateQuestion = () => {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName:Constants.TypeName.DescriptiveQuestion,Choices:scope.Choices }
+            scope.CreateQuestion = ()=> {
+                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptiveQuestion, Choices: scope.Choices }
 
 
                 scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
@@ -48,12 +47,12 @@
 
             };
 
-            scope.$on(Constants.QuestionDirectiveEvents.ParentClosed, (event, message) => {
+            scope.$on(Constants.QuestionDirectiveEvents.ParentClosed, (event, message)=> {
                 initialize();
 
-            })
+            });
 
-            scope.Cancel = () => {
+            scope.Cancel = ()=> {
 
 
                 initialize();
@@ -62,22 +61,24 @@
 
             };
 
-            scope.AddChoice = () => {
-                if (scope.ChoiceTitle =='') { return;}
+            scope.AddChoice = ()=> {
+                if (scope.ChoiceTitle == '') {
+                    return;
+                }
                 var ch = { Id: 0, Title: scope.ChoiceTitle };
                 scope.Choices.push(ch);
                 scope.ChoiceTitle = '';
-            }
+            };
 
-            scope.RemoveChoice = (choice) => {
-             
+            scope.RemoveChoice = (choice)=> {
+
                 var i = scope.Choices.indexOf(choice);
                 if (i != -1) {
                     scope.Choices.splice(i, 1);
                 }
-            }
+            };
 
-        }
+        };
 
 
         return ret;

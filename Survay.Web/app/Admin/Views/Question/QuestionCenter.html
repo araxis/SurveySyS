@@ -1,0 +1,60 @@
+﻿<div class="uk-height-1-1 " data-ng-controller="QuestionCenterController as vm">
+    <nav class="navbar   navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class=" " data-ui-sref="Admin">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle-o fa-stack-1x"></i>
+                        <i class="fa fa-angle-left fa-stack-1x"></i>
+                    </span>
+                </a>
+            </div>
+            <div  data-tabset>
+                <div data-tab >
+                    <div data-tab-heading>
+                        <i class="fa fa-table"></i>&nbsp;Questions
+                    </div>
+                    <a class="btn btn-default navbar-btn" data-ui-sref-active="active" data-ui-sref="QuestionCenter.All">Questions</a>
+
+
+
+
+
+                    <!-- <li><a data-ng-click="viewModel.Save()" class="fa fa-save fa-2x" href=""></a></li>-->
+
+
+
+
+
+                </div>
+                <div data-tab>
+                    <div data-tab-heading>
+                        <i class="fa fa-plus-square"></i>&nbsp;Create Question
+                    </div>
+                        <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.DescriptiveQuestion"><i class="fa fa-file-text"></i>&nbsp;Descriptive</a>
+                       <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.NumericQuestion"><i class="fa fa-sort-numeric-asc"></i>&nbsp;Numeric</a>
+                    <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.MultiChoiceQuestion"><i class="fa fa-check-square-o"></i>&nbsp;Multi Choice</a>
+                  
+                   
+                    
+                </div>
+            </div>
+           
+        </div>
+
+    </nav>
+  
+
+    <div   data-ui-view>
+
+
+    </div>
+
+
+</div>

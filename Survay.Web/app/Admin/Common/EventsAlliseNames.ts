@@ -6,7 +6,11 @@
          static NumericQuestion = "NumericQuestion";
          static RangeQuestion = "RangeQuestion";
 
-     }
+      }
+      export class BaseTypeName {
+          static Questions = "Questions";
+ 
+      }
 
       export class QuestionEvents {
           static CreateQuestion = "CreateQuestion";

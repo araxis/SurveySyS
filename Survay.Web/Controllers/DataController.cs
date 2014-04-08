@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using Breeze.ContextProvider;
 using Breeze.ContextProvider.EF6;
@@ -26,8 +25,8 @@ namespace Survey.Web.Controllers
           [HttpGet]
           [BreezeQueryable(MaxExpansionDepth = 4)]
         public IQueryable<SurveyModel> Surveys()
-        {
-           
+          {
+             
             return _contextProvider.Context.Surveys;
         }
 

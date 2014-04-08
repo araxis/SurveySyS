@@ -4,6 +4,7 @@ namespace Survey.DAL.EF
 {
     public class SurvayDbContext:DbContext
     {
+  
 
         public DbSet<SurveyModel> Surveys { get; set; }
         public DbSet<Page> Pages { get; set; }
