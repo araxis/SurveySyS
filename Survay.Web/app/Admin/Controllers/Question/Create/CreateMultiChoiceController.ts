@@ -31,22 +31,25 @@ module Admin.Controllers.Question.Create {
         public Description: string = '';
         public ImagePath: string = '';
         public Choices:Array<IChoice>=[];
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService) {
 
         }
 
         Create(): void {
             var ret = { Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath, Choices: this.Choices};
-            this.questionDataService.CreateQuestion(Constants.TypeName.MultiChoiceQuestion, ret);
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
+          var cr=  this.questionDataService.CreateQuestion(Constants.TypeName.MultiChoiceQuestion, ret);
+            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, cr);
+            this.ClearForm();
         }
 
         CreateAndExit(): void {
-            
+            this.Create();
+            this.$state.go('QuestionCenter.All');
         }
 
         Cancel(): void {
-            this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+           // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            this.$state.go('QuestionCenter.All');
         }
 
         AddChoice(): void {
@@ -58,7 +61,6 @@ module Admin.Controllers.Question.Create {
 
         }
 
-
         RemoveChoice(choice): void {
             
             var i = this.Choices.indexOf(choice);
@@ -67,9 +69,16 @@ module Admin.Controllers.Question.Create {
             }
         }
 
+        private ClearForm() {
+            this.Title = '';
+            this.Description = '';
+            this.ImagePath = '';
+            this.Choices = [];
+        }
+
     }
 
-    adminModule.controller(CreateMultiChoiceController.controllerId, ['$scope', 'QuestionDataService', CreateMultiChoiceController]);
+    adminModule.controller(CreateMultiChoiceController.controllerId, ['$scope', 'QuestionDataService','$state', CreateMultiChoiceController]);
 
 
 } 

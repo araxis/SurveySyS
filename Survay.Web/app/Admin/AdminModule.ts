@@ -1,17 +1,11 @@
-//window.onbeforeunload  = check;
-//function check() {
-//    return "alooooooooooooooo?";
-   
-//    //or put whatever function you need to call when a user closes the web //browser.
-//}
 
 
-//import DescriptiveQuestionRules= Admin.BuRules.DescriptiveQuestion;
-var adminModule = angular.module('admin', ['ui.router', 'ui.bootstrap','chieffancypants.loadingBar', 'ngAnimate','breezeDbContext']);
+var adminModule = angular.module('admin', ['ui.router', 'ui.bootstrap', 'chieffancypants.loadingBar', 'ngAnimate', 'breeze.angular', 'breeze.directives', 'breezeDbContext']);
 
-adminModule.config(['$stateProvider','cfpLoadingBarProvider', ($stateProvider: ng.ui.IStateProvider, cfpLoadingBarProvider) => {
+
+adminModule.config(['$stateProvider', 'cfpLoadingBarProvider', ($stateProvider: ng.ui.IStateProvider, cfpLoadingBarProvider) => {
     cfpLoadingBarProvider.includeSpinner = false;
-   
+
     $stateProvider
         .state('Admin', { url: "/admin", templateUrl: "../app/Admin/Views/Shell.html" })
         .state('Survay', { url: '/survey', templateUrl: '../app/Admin/Views/Survey.html' })
@@ -31,59 +25,17 @@ adminModule.config(['$stateProvider','cfpLoadingBarProvider', ($stateProvider: n
 }]);
 
 
-//adminModule.service('DbContext', App.Services.DbContext);
-//adminModule.service('DataService', Admin.Services.DataService);
-//adminModule.service('QuestionDataService', Admin.Services.QuestionDataService);
 
-//adminModule.controller('ShellController', Admin.Controllers.ShellController);
-//adminModule.controller('AllQuestionsController', Admin.Controllers.Question.AllQuestionsController);
-//adminModule.controller('QuestionCenterController', Admin.Controllers.QuestionCenterController);
-//adminModule.controller('CreateDescriptiveController', Admin.Controllers.Question.Create.CreateDescriptiveController);
-//adminModule.controller('CreateNumericController', Admin.Controllers.Question.Create.CreateNumericController);
-//adminModule.controller('CreateMultiChoiceController', Admin.Controllers.Question.Create.CreateMultiChoiceController);
-//adminModule.controller('EditDescriptiveController', Admin.Controllers.Question.Edit.EditDescriptiveController);
-//adminModule.controller('EditNumericController', Admin.Controllers.Question.Edit.EditNumericController);
-//adminModule.controller('EditMultiChoiceController', Admin.Controllers.Question.Edit.EditMultiChoiceController);
+adminModule.run(['$state', 'breeze', '$window', 'DbContext', ($state: ng.ui.IStateService, breeze, $window: ng.IWindowService, dbContext:IUnitofWork) => {
 
-
-
-
-
-
-//adminModule.directive('descriptiveQuestioncreator', Admin.directives.DescriptiveQuestionCreator);
-//adminModule.directive('numericQuestionCreator', Admin.directives.NumericQuestionCreator);
-//adminModule.directive('numericQuestionEditor', Admin.directives.NumericQuestionEditor);
-//adminModule.directive('descriptiveQuestionEditor', Admin.directives.DescriptiveQuestionEditor);
-//adminModule.directive('multiChoiceQuestionEditor', Admin.directives.MultiChoiceQuestionEditor);
-
-//adminModule.directive('multiChoiceQuestionCreator', Admin.directives.MultiChoiceQuestionCreator);
-//adminModule.directive('questionCreatorFactory', Admin.directives.QuestionCreatorFactory);
-
-//adminModule.run(['$state', 'breeze', '$window', 'DbContext', ($state: ng.ui.IStateService, breeze, $window: ng.IWindowService, dbContext:IUnitofWork) => {
-
-//    $window.onbeforeunload = (ev)=> {
-//        var rr = dbContext.Manager.hasChanges();
-//        if (rr) {
-//            alert("UnSaved Data!!!!!");
-//            return false;
-//        }
-//        return true;
-//    };
-
-//    $state.go("Admin");
-
-//}]);
-
-adminModule.run(['$state', 'breeze', '$window',  ($state: ng.ui.IStateService, breeze, $window: ng.IWindowService) => {
-
-    //$window.onbeforeunload = (ev) => {
-    //    var rr = dbContext.Manager.hasChanges();
-    //    if (rr) {
-    //        alert("UnSaved Data!!!!!");
-    //        return false;
-    //    }
-    //    return true;
-    //};
+    $window.onbeforeunload = (ev) => {
+        var rr = dbContext.Manager.hasChanges();
+        if (rr) {
+            alert("UnSaved Data!!!!!");
+            return false;
+        }
+        return true;
+    };
 
     $state.go("Admin");
 

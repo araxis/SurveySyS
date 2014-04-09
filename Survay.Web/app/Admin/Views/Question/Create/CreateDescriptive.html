@@ -1,9 +1,12 @@
 ﻿<div class="container" data-ng-controller="CreateDescriptiveController as vm">
-    <form data-ng-submit="vm.Create()" class="form-horizontal" role="form">
+    <form name="form" novalidate="" data-ng-submit="vm.Create()" class="form-horizontal" role="form">
         <div class="form-group">
             <label for="title" class="col-sm-2 control-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" data-ng-model="vm.Title" class="form-control" id="title" placeholder="Enter Question Title">
+                <input type="text" data-ng-model="vm.Title" autofocus name="title" class="form-control" required id="title" placeholder="Enter Question Title">
+                <div ng-show="form.title.$invalid">
+                    <span ng-show="form.title.$error.required">Enter Title.</span>                   
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -15,7 +18,7 @@
         <hr class="dl-horizontal" />
         <div class="col-sm-offset-2  ">
 
-            <button type="submit" class="btn btn-default">Create</button>
+            <button ng-disabled="form.$invalid" type="submit" class="btn btn-default">Create</button>
 
 
             <button data-ng-click="vm.CreateAndExit()" class="btn btn-default">Create-Exit</button>

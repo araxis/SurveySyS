@@ -3,7 +3,7 @@ module Admin.BuRules.DescriptiveQuestion{
     
     import Constants = Admin.Constants;
 
-    export class Rules {
+    export class DescriptiveQuestionRules {
 
         static serviceId: string = "DescriptiveQuestionRules";
        
@@ -18,18 +18,21 @@ module Admin.BuRules.DescriptiveQuestion{
             return ret;
         }
 
-        public GetAll(): breeze.EntityQuery {
+        public AllQuestions(): breeze.EntityQuery {
             
-            var query = breeze.EntityQuery.from(Constants.BaseTypeName.Questions).using(this.datacontext.Manager);
+            var query = breeze.EntityQuery.from(Constants.Repositories.DescriptivQuestions).using(this.datacontext.Manager);
             return query;
         }
 
+   
 
-      
+      //public GetById(id: number):IDescriptiveQuestion {
+          
+      //}
 
     }
 
-    adminModule.factory(Rules.serviceId, ['DbContext', Rules]);
+    adminModule.factory(DescriptiveQuestionRules.serviceId, ['DbContext', DescriptiveQuestionRules]);
 
 }
 

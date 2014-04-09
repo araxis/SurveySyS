@@ -37,7 +37,7 @@ module Admin.Services {
           var promise = query.execute().then((data) => {
                 total = data.inlineCount;
                 return query.using(breeze.FetchStrategy.FromLocalCache).execute();
-            })
+            });
 
             promise.then((result) => {
                 var ret = new Result<IQuestion>();

@@ -26,26 +26,38 @@ module Admin.Controllers.Question.Create {
         public Description: string = '';
         public ImagePath: string = '';
        
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService) {
             
         }
 
         Create(): void {
             var ret = {Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath};
-            this.questionDataService.CreateQuestion(Constants.TypeName.DescriptiveQuestion, ret);
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
+            var cr=   this.questionDataService.CreateQuestion(Constants.TypeName.DescriptivQuestion, ret);
+            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, cr);
+            this.ClearForm();
         }
 
         Cancel(): void {
-            this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            //this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            this.$state.go('QuestionCenter.All');
         }
 
   
 
-        CreateAndExit():void {}
+        CreateAndExit(): void {
+            this.Create();
+            this.$state.go('QuestionCenter.All');
+
+        }
+
+        private ClearForm() {
+            this.Title = '';
+            this.Description = '';
+            this.ImagePath = '';
+        }
 
     }
-    adminModule.controller(CreateDescriptiveController.controllerId, ['$scope', 'QuestionDataService',CreateDescriptiveController]);
+    adminModule.controller(CreateDescriptiveController.controllerId, ['$scope', 'QuestionDataService', '$state',CreateDescriptiveController]);
 }
 
 

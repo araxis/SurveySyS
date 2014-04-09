@@ -25,7 +25,7 @@ module Admin.Controllers.Question.Edit {
         public ImagePath: string = '';
         public Question: INumericQuestion = undefined;
 
-        constructor(private $scope: ng.IScope, private dataService: IQuestionDataService) {
+        constructor(private $scope: ng.IScope, private dataService: IQuestionDataService,private $state:ng.ui.IStateService) {
 
 
             $scope.$on(Constants.QuestionEvents.EditQuestion, this.EditQuestion);
@@ -45,11 +45,15 @@ module Admin.Controllers.Question.Edit {
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
         }
 
-        EditAndExit(): void{}
-
-        Cancel(): void {
-            this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+        EditAndExit(): void {
+            this.Edit();
+            this.$state.go('QuestionCenter.All');
         }
+        Cancel(): void {
+            // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            this.$state.go('QuestionCenter.All');
+        }
+  
 
 
 
@@ -82,6 +86,6 @@ module Admin.Controllers.Question.Edit {
 
     }
 
-    adminModule.controller(EditNumericController.controllerId, ['$scope', 'QuestionDataService',EditNumericController]);
+    adminModule.controller(EditNumericController.controllerId, ['$scope', 'QuestionDataService','$state',EditNumericController]);
 
 }  

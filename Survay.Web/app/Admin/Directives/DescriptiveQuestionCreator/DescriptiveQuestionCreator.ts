@@ -39,7 +39,7 @@ module Admin.directives {
             initialize();
 
             scope.CreateQuestion = () => {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptiveQuestion };
+                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptivQuestion };
 
 
                 scope.$emit(Admin.Constants.QuestionEvents.QuestionCreated, ret);

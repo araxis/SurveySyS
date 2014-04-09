@@ -1,4 +1,4 @@
-var breezeDbContextModule = angular.module('breezeDbContext', ['breeze.angular']);
+var breezeDbContextModule = angular.module('breezeDbContext', []);
 
 var App;
 (function (App) {
@@ -14,8 +14,11 @@ var App;
                 var _this = this;
                 this.Manager.fetchMetadata().then(function () {
                     _this.Manager.metadataStore.setEntityTypeForResourceName('Surveys', 'SurveyModel');
+                    _this.Manager.metadataStore.setEntityTypeForResourceName('DescriptivQuestions', 'DescriptivQuestion');
                     _this.Manager.metadataStore.registerEntityTypeCtor('Question', questionCtor, questionInit);
                     _this.Manager.metadataStore.registerEntityTypeCtor('PageQuestion', PageQuestionCtor, PageQuestionInit);
+                }, function (err) {
+                    var tt = err;
                 });
             };
 
@@ -53,9 +56,9 @@ function PageQuestionCtor() {
 
 function PageQuestionInit(entity) {
     switch (entity.Question.TypeName) {
-        case 'DescriptiveQuestion':
+        case 'DescriptivQuestion':
             entity.Answer = "";
-            entity.TypeName = 'DescriptiveQuestion';
+            entity.TypeName = 'DescriptivQuestion';
             break;
         case 'NumericQuestion':
             entity.Answer = -1;

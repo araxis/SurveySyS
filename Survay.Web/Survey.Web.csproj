@@ -372,7 +372,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\Admin\AdminModule.ts" />
-    <TypeScriptCompile Include="app\Admin\Common\EventsAlliseNames.ts" />
+    <TypeScriptCompile Include="app\Admin\Common\Constants.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\DashboardController.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\Question\Create\CreateDescriptiveController.ts" />
     <TypeScriptCompile Include="app\Admin\Controllers\Question\Create\CreateMultiChoiceController.ts" />

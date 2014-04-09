@@ -29,7 +29,7 @@ module Admin.Controllers.Question.Edit {
         public Choices:Array<IChoice>=[];
         public Question: IMultiChoiceQuestion = undefined;
 
-        constructor(private $scope: ng.IScope, private dataService: IQuestionDataService) {
+        constructor(private $scope: ng.IScope, private dataService: IQuestionDataService,private $state:ng.ui.IStateService) {
 
 
             $scope.$on(Constants.QuestionEvents.EditQuestion, this.EditQuestion);
@@ -49,11 +49,15 @@ module Admin.Controllers.Question.Edit {
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
         }
 
-        EditAndExit(): void{}
-
-        Cancel(): void {
-            this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+        EditAndExit(): void {
+            this.Edit();
+            this.$state.go('QuestionCenter.All');
         }
+        Cancel(): void {
+            // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            this.$state.go('QuestionCenter.All');
+        }
+  
 
         AddChoice(choiceTitle: string): void {
             if (choiceTitle == '') {
@@ -103,6 +107,6 @@ module Admin.Controllers.Question.Edit {
 
     }
 
-    adminModule.controller(EditMultiChoiceController.controllerId, ['$scope', 'QuestionDataService', EditMultiChoiceController]);
+    adminModule.controller(EditMultiChoiceController.controllerId, ['$scope', 'QuestionDataService','$state', EditMultiChoiceController]);
 
 }   

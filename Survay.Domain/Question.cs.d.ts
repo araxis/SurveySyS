@@ -1,15 +1,15 @@
 ﻿declare module server {
 	interface Question {
-		Id: number;
-		Title: string;
-		Description: string;
-		ImagePath: string;
-		Choices: server.Choice[];
+		id: number;
+		title: string;
+		description: string;
+		imagePath: string;
+		choices: server.Choice[];
 	}
 	interface Choice {
-		Id: number;
-		Title: string;
-		QuestionId: number;
-		Question: server.Question;
+		id: number;
+		title: string;
+		questionId: number;
+		question: server.Question;
 	}
 }

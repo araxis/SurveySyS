@@ -6,7 +6,7 @@ module Admin.Filters {
          filter(question: IQuestion) {
             var ret = '';
             switch (question.TypeName) {
-                case Constants.TypeName.DescriptiveQuestion:
+                case Constants.TypeName.DescriptivQuestion:
                     ret = '#/questionCenter/edit/descriptive/';
                     break;
                 case Constants.TypeName.NumericQuestion:

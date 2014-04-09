@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201402170703154_change10.Designer.cs">
       <DependentUpon>201402170703154_change10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404090459106_validation.cs" />
+    <Compile Include="Migrations\201404090459106_validation.Designer.cs">
+      <DependentUpon>201404090459106_validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SurvayDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402170703154_change10.resx">
       <DependentUpon>201402170703154_change10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404090459106_validation.resx">
+      <DependentUpon>201404090459106_validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

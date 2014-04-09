@@ -2,14 +2,15 @@
 
       export  class TypeName {
          static MultiChoiceQuestion = "MultiChoiceQuestion";
-         static DescriptiveQuestion = "DescriptiveQuestion";
+         static DescriptivQuestion = "DescriptivQuestion";
          static NumericQuestion = "NumericQuestion";
          static RangeQuestion = "RangeQuestion";
-
+         
       }
-      export class BaseTypeName {
-          static Questions = "Questions";
  
+      export class Repositories {
+          static Questions = "Questions";
+          static DescriptivQuestions = "DescriptivQuestions";
       }
 
       export class QuestionEvents {

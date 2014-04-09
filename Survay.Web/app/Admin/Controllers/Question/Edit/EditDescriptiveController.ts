@@ -27,7 +27,7 @@ module Admin.Controllers.Question.Edit {
         public ImagePath: string = '';
         private  Question: IDescriptiveQuestion =undefined;
 
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService, $state: ng.ui.IStateService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state: ng.ui.IStateService) {
 
             var p = $state.params['id'];
 
@@ -46,10 +46,15 @@ module Admin.Controllers.Question.Edit {
             this.Question.ImagePath = this.ImagePath;
 
             this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
+           this.Reset();
         }
-        EditAndExit(): void{}
+        EditAndExit(): void {
+            this.Edit();
+            this.$state.go('QuestionCenter.All');
+        }
         Cancel(): void {
-            this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+           // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
+            this.$state.go('QuestionCenter.All');
         }
   
         private LoadQuestion(id: number) {

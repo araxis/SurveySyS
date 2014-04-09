@@ -51,6 +51,7 @@ namespace Survey.Web
                    .Include("~/Content/font-awesome.min.css", new CssRewriteUrlTransform())
                    //.Include("~/Content/bootstrap-additions.css", new CssRewriteUrlTransform())
                    .Include("~/Content/site.css", new CssRewriteUrlTransform())
+                   .Include("~/Content/breeze.directives.css", new CssRewriteUrlTransform())
                   .Include("~/Content/loading-bar.css", new CssRewriteUrlTransform())
                   .Include("~/Content/animations.css", new CssRewriteUrlTransform())
                    );

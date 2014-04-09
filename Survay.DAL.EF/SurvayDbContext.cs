@@ -9,7 +9,7 @@ namespace Survey.DAL.EF
         public DbSet<SurveyModel> Surveys { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Answer> Answers { get; set; }
-
+        public DbSet<Question> Questions { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SurveyModel>().HasMany(m => m.Pages).WithRequired(r => r.Survey).HasForeignKey(f => f.SurvayModelId);

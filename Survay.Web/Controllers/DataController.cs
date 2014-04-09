@@ -37,6 +37,14 @@ namespace Survey.Web.Controllers
         }
 
           [HttpGet]
+          public IQueryable<DescriptivQuestion> DescriptivQuestions()
+          {
+
+       
+              return _contextProvider.Context.Questions.OfType<DescriptivQuestion>();
+          }
+
+          [HttpGet]
           public IQueryable<Page> Pages()
           {
               return _contextProvider.Context.Pages;

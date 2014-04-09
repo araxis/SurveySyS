@@ -39,7 +39,7 @@
             initialize();
 
             scope.CreateQuestion = ()=> {
-                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptiveQuestion, Choices: scope.Choices }
+                var ret = { Title: scope.Title, Description: scope.Description, ImagePath: scope.ImagePath, TypeName: Constants.TypeName.DescriptivQuestion, Choices: scope.Choices }
 
 
                 scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
