@@ -20,7 +20,7 @@
                     <div data-tab-heading>
                         <i class="fa fa-table"></i>&nbsp;Questions
                     </div>
-                    <a class="btn btn-default navbar-btn" data-ui-sref-active="active" data-ui-sref="QuestionCenter.All">Questions</a>
+                    <a class="btn btn-default navbar-btn" data-ui-sref-active="active" data-ui-sref="QuestionCenter.Home">Questions</a>
 
 
 
@@ -37,9 +37,9 @@
                     <div data-tab-heading>
                         <i class="fa fa-plus-square"></i>&nbsp;Create Question
                     </div>
-                        <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.DescriptiveQuestion"><i class="fa fa-file-text"></i>&nbsp;Descriptive</a>
-                       <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.NumericQuestion"><i class="fa fa-sort-numeric-asc"></i>&nbsp;Numeric</a>
-                    <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Create.MultiChoiceQuestion"><i class="fa fa-check-square-o"></i>&nbsp;Multi Choice</a>
+                    <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Home.CreateDescriptiveQuestion"><i class="fa fa-file-text"></i>&nbsp;Descriptive</a>
+                    <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Home.CreateNumericQuestion"><i class="fa fa-sort-numeric-asc"></i>&nbsp;Numeric</a>
+                    <a class="btn btn-default navbar-btn " data-ui-sref-active="active" data-ui-sref="QuestionCenter.Home.CreateMultiChoiceQuestion"><i class="fa fa-check-square-o"></i>&nbsp;Multi Choice</a>
                   
                    
                     
@@ -50,11 +50,16 @@
 
     </nav>
   
+    
 
-    <div   data-ui-view>
+
+ <div data-ui-view="details">
 
 
     </div>
+    
+<div data-ui-view="all"></div>
+    
 
 
 </div>

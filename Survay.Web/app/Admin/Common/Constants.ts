@@ -11,6 +11,7 @@
       export class Repositories {
           static Questions = "Questions";
           static DescriptivQuestions = "DescriptivQuestions";
+          static MultiChoiceQuestions = "MultiChoiceQuestions";
       }
 
       export class QuestionEvents {

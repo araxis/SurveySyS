@@ -33,7 +33,8 @@ namespace Survey.Web
         "~/scripts/AngularUI/ui-router.min.js",
          "~/Scripts/breeze.angular.js",
          "~/Scripts/breeze.directives.js",
-          "~/Scripts/loading-bar.js"
+          "~/Scripts/loading-bar.js",
+          "~/Scripts/angular-event-aggregator.js"
        ));
 
           

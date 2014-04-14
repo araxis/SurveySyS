@@ -29,11 +29,15 @@ module Admin.Controllers.Question.Edit {
         public Choices:Array<IChoice>=[];
         public Question: IMultiChoiceQuestion = undefined;
 
-        constructor(private $scope: ng.IScope, private dataService: IQuestionDataService,private $state:ng.ui.IStateService) {
+        constructor(private $scope: ng.IScope, private dbcontext: IUnitofWork, private $state: ng.ui.IStateService, private eventaggregator: ngEventAgregator.IEventAggragator) {
 
 
             $scope.$on(Constants.QuestionEvents.EditQuestion, this.EditQuestion);
 
+        }
+
+        private LoadQuestion(id: number):void {
+            var query = this.dbcontext.IQueryable(Constants.Repositories.MultiChoiceQuestions).expand('Choices');
         }
 
         Edit(): void {
@@ -46,16 +50,16 @@ module Admin.Controllers.Question.Edit {
             this.Question.Description = this.Description;
             this.Question.ImagePath = this.ImagePath;
             this.Question.Choices = this.Choices;
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
+            this.eventaggregator.trigger(Constants.QuestionEvents.QuestionEdited, this.Question);
         }
 
         EditAndExit(): void {
             this.Edit();
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
         Cancel(): void {
             // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
   
 
@@ -107,6 +111,6 @@ module Admin.Controllers.Question.Edit {
 
     }
 
-    adminModule.controller(EditMultiChoiceController.controllerId, ['$scope', 'QuestionDataService','$state', EditMultiChoiceController]);
+    adminModule.controller(EditMultiChoiceController.controllerId, ['$scope', 'DbContext', '$state', 'eventAggregator', EditMultiChoiceController]);
 
 }   

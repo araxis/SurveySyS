@@ -43,8 +43,8 @@ module Admin.Services {
                 var ret = new Result<IQuestion>();
                 ret.Results = <Array<IQuestion>> result.results;
 
-                var added = self.datacontext.Manager.getEntities(['DescriptiveQuestion', 'NumericQuestion', 'RangeQuestion', 'MultiChoiceQuestion'], breeze.EntityState.Added).length;
-                var removed = self.datacontext.Manager.getEntities(['DescriptiveQuestion', 'NumericQuestion', 'RangeQuestion', 'MultiChoiceQuestion'], breeze.EntityState.Deleted).length;
+                var added = self.datacontext.Manager.getEntities(['DescriptivQuestion', 'NumericQuestion', 'RangeQuestion', 'MultiChoiceQuestion'], breeze.EntityState.Added).length;
+                var removed = self.datacontext.Manager.getEntities(['DescriptivQuestion', 'NumericQuestion', 'RangeQuestion', 'MultiChoiceQuestion'], breeze.EntityState.Deleted).length;
                 ret.inlineCount = total + added - removed;
                 deferred.resolve(ret);
 

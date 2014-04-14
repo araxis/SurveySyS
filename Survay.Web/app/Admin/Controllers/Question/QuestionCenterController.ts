@@ -9,7 +9,7 @@
 
         static $inject = ['$state'];
         constructor($state: ng.ui.IStateService) {
-            $state.go("QuestionCenter.All");
+            //$state.go("QuestionCenter.All");
         }
     }
 

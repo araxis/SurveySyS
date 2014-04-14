@@ -25,25 +25,25 @@ module Admin.Controllers.Question.Create {
         public Description: string = '';
         public ImagePath: string = '';
 
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService,private eventaggregator:ngEventAgregator.IEventAggragator) {
 
         }
 
         Create(): void {
             var ret = { Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath };
-            this.questionDataService.CreateQuestion(Constants.TypeName.NumericQuestion, ret);
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, ret);
+          var cr=  this.questionDataService.CreateQuestion(Constants.TypeName.NumericQuestion, ret);
+            this.eventaggregator.trigger(Constants.QuestionEvents.QuestionCreated, cr);
             this.ClearForm();
         }
 
         CreateAndExit(): void {
             this.Create();
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
 
         Cancel(): void {
             //this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
 
         private ClearForm() {
@@ -54,5 +54,5 @@ module Admin.Controllers.Question.Create {
 
     }
 
-    adminModule.controller(CreateNumericController.controllerId, ['$scope', 'QuestionDataService','$state',CreateNumericController]);
+    adminModule.controller(CreateNumericController.controllerId, ['$scope', 'QuestionDataService', '$state','eventAggregator',CreateNumericController]);
 } 

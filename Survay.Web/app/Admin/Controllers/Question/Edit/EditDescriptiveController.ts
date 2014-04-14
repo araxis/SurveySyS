@@ -11,13 +11,13 @@ module Admin.Controllers.Question.Edit {
        
 
         Edit(): void;
-        EditAndExit():void;
-
+   
+        EditAndExit(): void;
         Cancel(): void;
     }
 
     import Constants = Admin.Constants;
-
+    import Service= Admin.BuRules.DescriptiveQuestion;
     export class EditDescriptiveController implements IEditDescriptiveController {
 
         //static $inject = ['$scope', 'QuestionDataService', '$state'];
@@ -27,10 +27,10 @@ module Admin.Controllers.Question.Edit {
         public ImagePath: string = '';
         private  Question: IDescriptiveQuestion =undefined;
 
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state: ng.ui.IStateService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IDescriptiveQuestionService, private $state: ng.ui.IStateService, private eventaggregator: ngEventAgregator.IEventAggragator) {
 
             var p = $state.params['id'];
-
+            this.LoadQuestion(p);
             $scope.$on(Constants.QuestionEvents.EditQuestion, this.EditQuestion);
 
         }
@@ -45,21 +45,32 @@ module Admin.Controllers.Question.Edit {
             this.Question.Description = this.Description;
             this.Question.ImagePath = this.ImagePath;
 
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, this.Question);
-           this.Reset();
+            this.eventaggregator.trigger(Constants.QuestionEvents.QuestionEdited, this.Question);
+          
         }
+
         EditAndExit(): void {
             this.Edit();
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
+    
         Cancel(): void {
            // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
-            this.$state.go('QuestionCenter.All');
+            if (this.Question != undefined) {
+                this.Question.entityAspect.rejectChanges();
+            }
+
+         
+            this.$state.go('QuestionCenter.Home.All');
         }
   
         private LoadQuestion(id: number) {
             //var query = this.datacontext.IQueryable(Constants.BaseTypeName.Questions).where();
-            
+            this.questionDataService.GetById(id).then((data)=> {
+                this.Question = data;
+                this.Initialize(data);
+
+            });
 
         }
 
@@ -92,6 +103,6 @@ module Admin.Controllers.Question.Edit {
     
     }
 
-    adminModule.controller(EditDescriptiveController.controllerId, ['$scope', 'QuestionDataService', '$state',EditDescriptiveController]);
+    adminModule.controller(EditDescriptiveController.controllerId, ['$scope', Service.DescriptiveQuestionService.serviceId, '$state', 'eventAggregator',EditDescriptiveController]);
 
 } 

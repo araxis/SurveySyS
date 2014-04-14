@@ -22,6 +22,7 @@ module App.Services{
             this.Manager.fetchMetadata().then(() => {
                 this.Manager.metadataStore.setEntityTypeForResourceName('Surveys', 'SurveyModel');
                 this.Manager.metadataStore.setEntityTypeForResourceName('DescriptivQuestions', 'DescriptivQuestion');
+                this.Manager.metadataStore.setEntityTypeForResourceName('MultiChoiceQuestions', 'MultiChoiceQuestion');
             this.Manager.metadataStore.registerEntityTypeCtor('Question', questionCtor, questionInit);
             this.Manager.metadataStore.registerEntityTypeCtor('PageQuestion', PageQuestionCtor, PageQuestionInit);
            

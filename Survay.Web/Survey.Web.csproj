@@ -234,6 +234,10 @@
     <Content Include="Scripts\angular-animate.min.js">
       <DependentUpon>angular-animate.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\angular-event-aggregator.js" />
+    <Content Include="Scripts\angular-event-aggregator.min.js">
+      <DependentUpon>angular-event-aggregator.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\angular-mocks.js">
       <DependentUpon>angular.js</DependentUpon>
     </Content>
@@ -358,7 +362,6 @@
     <Folder Include="app\EndUser\Common\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Survay.DAL.EF\Survey.DAL.EF.csproj">
@@ -414,6 +417,7 @@
     <TypeScriptCompile Include="app\Interfaces\IQuestion.ts" />
     <TypeScriptCompile Include="app\Interfaces\ISurvey.ts" />
     <TypeScriptCompile Include="app\EndUser\Services\DataService.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angular-event-aggregator\angular-event-aggregator.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />

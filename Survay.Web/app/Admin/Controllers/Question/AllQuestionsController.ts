@@ -22,7 +22,7 @@ module Admin.Controllers.Question {
         public CurrentPage: number; 
         public selectedQ: any; 
         public mode: string; 
-        constructor(private $scope: IQuestionsScope, private questionDataService: IQuestionDataService) {
+        constructor(private $scope: IQuestionsScope, private questionDataService: IQuestionDataService,private eventaggregator:ngEventAgregator.IEventAggragator) {
 
             this.isCollapsed = true;
             this.Pagesize = 10;
@@ -32,10 +32,14 @@ module Admin.Controllers.Question {
             this.Questions = [];
             this.mode = '';
             
-            $scope.$on(Constants.QuestionEvents.QuestionCreated, (event, message)=> {
-               
-                //var x = $scope.viewModel.questionDataService.CreateQuestion(message);
-                //$scope.viewModel.Questions.push(x);
+            //$scope.$on(Constants.QuestionEvents.QuestionCreated, (event, message)=> {
+            //    var x = message;
+            //    //var x = $scope.viewModel.questionDataService.CreateQuestion(message);
+            //    //$scope.viewModel.Questions.push(x);
+            //});
+
+            this.eventaggregator.on(Constants.QuestionEvents.QuestionCreated, (qu)=> {
+                this.load(1);
             });
             $scope.viewModel = this;
 
@@ -86,5 +90,5 @@ module Admin.Controllers.Question {
 
     }
 
-    adminModule.controller(AllQuestionsController.controllerId, ['$scope', 'QuestionDataService', AllQuestionsController]);
+    adminModule.controller(AllQuestionsController.controllerId, ['$scope', 'QuestionDataService','eventAggregator', AllQuestionsController]);
 } 

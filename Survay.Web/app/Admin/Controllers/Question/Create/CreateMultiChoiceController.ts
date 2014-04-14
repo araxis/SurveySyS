@@ -31,25 +31,25 @@ module Admin.Controllers.Question.Create {
         public Description: string = '';
         public ImagePath: string = '';
         public Choices:Array<IChoice>=[];
-        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService) {
+        constructor(private $scope: ng.IScope, private questionDataService: IQuestionDataService,private $state:ng.ui.IStateService,private eventaggregator:ngEventAgregator.IEventAggragator) {
 
         }
 
         Create(): void {
             var ret = { Id: 0, Title: this.Title, Description: this.Description, ImagePath: this.ImagePath, Choices: this.Choices};
           var cr=  this.questionDataService.CreateQuestion(Constants.TypeName.MultiChoiceQuestion, ret);
-            this.$scope.$emit(Constants.QuestionEvents.QuestionCreated, cr);
+            this.eventaggregator.trigger(Constants.QuestionEvents.QuestionCreated, cr);
             this.ClearForm();
         }
 
         CreateAndExit(): void {
             this.Create();
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
 
         Cancel(): void {
            // this.$scope.$emit(Constants.CommonEvents.OperationCanceld);
-            this.$state.go('QuestionCenter.All');
+            this.$state.go('QuestionCenter.Home.All');
         }
 
         AddChoice(): void {
@@ -78,7 +78,7 @@ module Admin.Controllers.Question.Create {
 
     }
 
-    adminModule.controller(CreateMultiChoiceController.controllerId, ['$scope', 'QuestionDataService','$state', CreateMultiChoiceController]);
+    adminModule.controller(CreateMultiChoiceController.controllerId, ['$scope', 'QuestionDataService', '$state','eventAggregator', CreateMultiChoiceController]);
 
 
 } 

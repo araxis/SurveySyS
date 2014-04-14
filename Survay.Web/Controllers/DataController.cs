@@ -45,16 +45,20 @@ namespace Survey.Web.Controllers
           }
 
           [HttpGet]
+          public IQueryable<MultiChoiceQuestion> MultiChoiceQuestions()
+          {
+
+
+              return _contextProvider.Context.Questions.OfType<MultiChoiceQuestion>();
+          }
+
+          [HttpGet]
           public IQueryable<Page> Pages()
           {
               return _contextProvider.Context.Pages;
           }
 
-          [HttpGet]
-          public IQueryable<MultiChoiceQuestion> MultiChoiceQuestions()
-          {
-              return _contextProvider.Context.Set<MultiChoiceQuestion>();
-          }
+    
 
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle)
